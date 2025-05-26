@@ -4,23 +4,22 @@ return {
     opts = function()
         local icons = LazyVim.config.icons
 
-        -- Custom colors
         local colors = {
-            bg = "#202328",
-            fg = "#bbc2cf",
-            yellow = "#ECBE7B",
-            cyan = "#008080",
-            darkblue = "#081633",
-            green = "#98be65",
-            orange = "#FF8800",
-            violet = "#a9a1e1",
-            magenta = "#c678dd",
-            blue = "#51afef",
-            red = "#ec5f67",
-            gray = "#5c6370",
+            bg = "#011627",
+            fg = "#d6deeb",
+            gray = "#5f7e97",
+            blue = "#82aaff",
+            darkblue = "#011221",
+            green = "#22da6e",
+            cyan = "#21c7a8",
+            yellow = "#ecc48d",
+            orange = "#ffae57",
+            red = "#ef5350",
+            magenta = "#c792ea",
+            violet = "#c792ea",
         }
 
-        -- Enhanced diff source with error handling
+        -- Diff source
         local function diff_source()
             local gitsigns = vim.b.gitsigns_status_dict
             if gitsigns then
@@ -32,7 +31,7 @@ return {
             end
         end
 
-        -- Enhanced LSP info with server count and status
+        -- LSP info: server count and status
         local function lsp_info()
             local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
             if #buf_clients == 0 then
@@ -61,7 +60,7 @@ return {
             return table.concat(result, " ")
         end
 
-        -- Git status with enhanced info
+        -- Git status
         local function git_blame()
             local blame = vim.fn.system("git log --oneline -1 2>/dev/null")
             if vim.v.shell_error == 0 then
@@ -125,7 +124,7 @@ return {
             return string.format("%.1f%s", size, suffixes[i])
         end
 
-        -- Enhanced mode with icons
+        -- Mode icons
         local mode_map = {
             n = "󰋜 NORMAL",
             i = "󰏫 INSERT",
@@ -202,16 +201,16 @@ return {
                 lualine_b = {
                     {
                         "branch",
-                        icon = { icons.git.branch, color = { fg = colors.orange } },
+                        icon = { "", color = { fg = colors.orange } },
                         color = { fg = colors.fg, gui = "bold" },
                     },
                     {
                         "diff",
                         source = diff_source,
                         symbols = {
-                            added = icons.git.added .. " ",
-                            modified = icons.git.modified .. " ",
-                            removed = icons.git.removed .. " ",
+                            added = " ",
+                            modified = " ",
+                            removed = " ",
                         },
                         diff_color = {
                             added = { fg = colors.green },
